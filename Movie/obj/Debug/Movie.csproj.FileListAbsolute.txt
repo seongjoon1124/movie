@@ -31,3 +31,5 @@ C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.Text.Encodings.Web.xm
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.Text.Json.xml
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.ValueTuple.xml
+C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form2.resources
+C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form3.resources
