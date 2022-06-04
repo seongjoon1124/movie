@@ -16,6 +16,10 @@ namespace Movie
 {
     public partial class Form2 : Form
     {
+        public static List<String> ticket_url = new List<String>();
+        public static List<Button> btn = new List<Button>();    
+        public int btn_count = 0;
+
         public Form2()
         {
             InitializeComponent();
@@ -68,6 +72,7 @@ namespace Movie
         {
             JArray array = JArray.Parse(json.ToString());
             int y = 10;
+            
 
             foreach (JObject itemObj in array)
             {
@@ -76,14 +81,22 @@ namespace Movie
                 textBox1.Text += "영화 제목 : " + itemObj["movie_name"].ToString();
                 textBox1.Text += "상영 시간" + itemObj["movie_time"].ToString();
                 textBox1.Text += "예매하기 : " + itemObj["ticket_link"].ToString(); //button으로 전환 후 클릭 시 영화관, 지역, 시간 form으로 넘어가게
-                Button btn = new Button();
-                btn.Text = ("예매하기");
-                btn.Location = new Point(565, y);
-                btn.Size = new Size(95, 24);
+                btn.Add(new Button());
+                btn[btn_count] = new Button();
+                this.Controls.Add(btn[btn_count]);
+                btn[btn_count].Text = ("예매하기");
+                btn[btn_count].Location = new Point(565, y);
+                btn[btn_count].Size = new Size(95, 24);
                 y += 60;
+                
+                ticket_url.Add(itemObj["ticket_link"].ToString());
+                    
 
-                this.Controls.Add(btn);
-                btn.Click += button_Click;
+                btn[btn_count].Click += button_Click;
+                btn_count++;
+
+
+
 
                 //button 클릭하면 itemObj["ticket_link"].ToString()값을 가지고 다음 form으로 넘어간 후 해당 http 주소에서 지역, 날짜에 대한 값을 입력하면 영화관을 시간 순으로 나열
             }
@@ -96,6 +109,15 @@ namespace Movie
             newForm.Show();
             Program.ac.MainForm = newForm;
             this.Close();
+            try
+            {
+                System.Diagnostics.Process.Start(ticket_url[btn_count]);
+            }
+            catch (Exception e1)
+            {
+                //
+            }
+    
         }
 
 
