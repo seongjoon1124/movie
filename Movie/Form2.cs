@@ -16,8 +16,8 @@ namespace Movie
 {
     public partial class Form2 : Form
     {
-        public static List<String> ticket_url = new List<String>();
-        public static List<Button> btn = new List<Button>();    
+        public List<String> ticket_url = new List<String>();
+        public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
 
         public Form2()
@@ -84,15 +84,17 @@ namespace Movie
                 btn.Add(new Button());
                 btn[btn_count] = new Button();
                 this.Controls.Add(btn[btn_count]);
-                btn[btn_count].Text = ("예매하기");
+                btn[btn_count].Text = (itemObj["movie_name"].ToString());
                 btn[btn_count].Location = new Point(565, y);
                 btn[btn_count].Size = new Size(95, 24);
+               
                 y += 60;
                 
                 ticket_url.Add(itemObj["ticket_link"].ToString());
-                    
 
                 btn[btn_count].Click += button_Click;
+                
+                
                 btn_count++;
 
 
@@ -104,18 +106,21 @@ namespace Movie
 
         private void button_Click(object sender, EventArgs e)
         {
+            
             this.Hide();
             Form4 newForm = new Form4();
             newForm.Show();
             Program.ac.MainForm = newForm;
             this.Close();
-            try
+
+            int i = 0;
+            foreach (String ts in ticket_url)
             {
-                System.Diagnostics.Process.Start(ticket_url[btn_count]);
-            }
-            catch (Exception e1)
-            {
-                //
+                if (ts == ticket_url.Find())
+                {
+                    System.Diagnostics.Process.Start(ticket_url[i]);
+                } 
+                i++;
             }
     
         }
