@@ -20,6 +20,8 @@ namespace Movie
         public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
 
+        String retString;
+
         public Form2()
         {
             InitializeComponent();
@@ -53,7 +55,7 @@ namespace Movie
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 Stream myResponseStream = response.GetResponseStream();
                 StreamReader myStreamReader = new StreamReader(myResponseStream);
-                string retString = myStreamReader.ReadToEnd();
+                retString = myStreamReader.ReadToEnd();
 
                 myStreamReader.Close();
                 myResponseStream.Close();
@@ -113,14 +115,22 @@ namespace Movie
             Program.ac.MainForm = newForm;
             this.Close();
 
-            int i = 0;
-            foreach (String ts in ticket_url)
+            Button thisbtn = sender as Button;
+            JArray array = JArray.Parse(retString.ToString());
+            try
             {
-                if (ts == ticket_url.Find())
+                foreach (JObject Object in array)
                 {
-                    System.Diagnostics.Process.Start(ticket_url[i]);
-                } 
-                i++;
+                    if (Object["movie_name"].ToString() == thisbtn.Text)
+                    {
+                        System.Diagnostics.Process.Start(Object["ticket_link"].ToString());
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //
             }
     
         }
