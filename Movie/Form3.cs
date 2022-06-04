@@ -20,7 +20,14 @@ namespace Movie
             InitializeComponent();
             GetMoiveRank();
         }
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form1 newForm = new Form1();
+            newForm.Show();
+            Program.ac.MainForm = newForm;
+            this.Close();
+        }
         public void GetMoiveRank()  //movie_list.json 데이터 읽기
         {
             try
@@ -69,13 +76,6 @@ namespace Movie
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form1 newForm = new Form1();
-            newForm.Show();
-            Program.ac.MainForm = newForm;
-            this.Close();
-        }
+       
     }
 }

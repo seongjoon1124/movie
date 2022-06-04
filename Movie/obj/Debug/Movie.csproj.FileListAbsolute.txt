@@ -33,3 +33,6 @@ C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.Threading.Tasks.Exten
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\System.ValueTuple.xml
 C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form2.resources
 C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form3.resources
+C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\WebDriver.Support.dll
+C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form4.resources
