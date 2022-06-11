@@ -25,26 +25,35 @@ namespace Movie
             InitializeComponent();
             GetMovie_Area_time();
         }
-        
+
 
         public void GetMovie_Area_time()
         {
-            Form2 _form = new Form2(this); 
-            string url = _form.GetTicketUrl();
-            
-            textBox1.Text = "평점" + url;
+            Form2 _form = new Form2();
+            String url = _form.GetTicketUrl();
 
-            IWebDriver a = new ChromeDriver();
-            
+            textBox1.Text += "주소 : " + url;
 
+            //IWebDriver driver = new ChromeDriver("C:/Users/Sungjun/Desktop/ExamSelenium/packages/Selenium.WebDriver.ChromeDriver.102.0.5005.6102/driver/win32");
+            //IWebDriver a = new ChromeDriver();
+            System.Diagnostics.Process.Start(url);
+
+            //using (IWebDriver cDriver = new ChromeDriver("C:/Users/Sungjun/Desktop/ExamSelenium/packages/Selenium.WebDriver.ChromeDriver.102.0.5005.6102/driver/win32"))
+            //{
+
+
+            //    cDriver.Url = url;
+            //    cDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
+            //}
 
 
         }
 
-        
 
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+            private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }

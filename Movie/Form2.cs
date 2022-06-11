@@ -19,7 +19,7 @@ namespace Movie
         public List<String> ticket_url = new List<String>();
         public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
-        static String Ticket_url;
+        
 
         String retString;
         Form4 frm4;
@@ -76,6 +76,8 @@ namespace Movie
 
 
         }
+
+        
         public void JsonParser(String json)
         {
             JArray array = JArray.Parse(json.ToString());
@@ -112,14 +114,15 @@ namespace Movie
             }
         }
 
+        static String Ticket_url = "";
+        public String GetTicketUrl()
+        {
+            return Ticket_url;
+        }
         public void button_Click(object sender, EventArgs e)
         {
             
-            this.Hide();
-            Form4 newForm = new Form4();
-            newForm.Show();
-            Program.ac.MainForm = newForm;
-            this.Close();
+           
 
             Button thisbtn = sender as Button;
             JArray array = JArray.Parse(retString.ToString());
@@ -130,6 +133,12 @@ namespace Movie
                     if (Object["movie_name"].ToString() == thisbtn.Text)
                     {
                         Ticket_url = Object["ticket_link"].ToString();
+
+                        this.Hide();
+                        Form4 newForm = new Form4();
+                        newForm.Show();
+                        Program.ac.MainForm = newForm;
+                        this.Close();
                         //System.Diagnostics.Process.Start(Object["ticket_link"].ToString());
                         //this.Hide();
                         //Form4 Movefomr4 = new Form4();
@@ -137,7 +146,7 @@ namespace Movie
                         //Program.ac.MainForm = newForm;
                         //this.Close();
 
-                        
+
                     }
 
                 }
@@ -149,10 +158,7 @@ namespace Movie
     
         }
 
-        public String GetTicketUrl()
-        {
-            return Ticket_url;
-        }
+      
 
 
 
