@@ -13,40 +13,36 @@ using OpenQA.Selenium.Support.UI;
 using System.IO;
 using System.Net;
 using Newtonsoft.Json.Linq;
+using Movie;
 
 namespace Movie
 {
     public partial class Form4 : Form
     {
+        
         public Form4()
         {
             InitializeComponent();
-            
+            GetMovie_Area_time();
         }
+        
 
         public void GetMovie_Area_time()
         {
-            using (IWebDriver driver = new ChromeDriver())
-            {
-                driver.Url = "https://movie.naver.com/movie/running/current.naver";
-                driver.Url = "https://www.naver.com/";
+            Form2 _form = new Form2(this); 
+            string url = _form.GetTicketUrl();
+            
+            textBox1.Text = "평점" + url;
 
-            }
+            IWebDriver a = new ChromeDriver();
+            
+
+
+
         }
 
-        //private void Parser(String json)
-        //{
-        //    JArray array = JArray.Parse(json.ToString());
+        
 
-        //    foreach (JObject itemObj in array)
-        //    {
-        //        textBox1.Text += "평점 : " + itemObj["grade"].ToString();
-        //        textBox1.Text += "이미지 주소 : " + itemObj["img_url"].ToString();
-        //        textBox1.Text += "영화 제목 : " + itemObj["movie_name"].ToString();
-        //        textBox1.Text += "상영 시간" + itemObj["movie_time"].ToString();
-        //        textBox1.Text += "티켓 주소 : " + itemObj["ticket_link"].ToString();
-        //    }
-        //}
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {

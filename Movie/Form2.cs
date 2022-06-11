@@ -19,20 +19,26 @@ namespace Movie
         public List<String> ticket_url = new List<String>();
         public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
+        static String Ticket_url;
 
         String retString;
+        Form4 frm4;
 
         public Form2()
         {
             InitializeComponent();
             GetMoiveList();
         }
-
+        public Form2(Form4 _form4)
+        {
+            InitializeComponent();
+            frm4 = _form4;
+        }
         //private void textBox1_TextChanged(object sender, EventArgs e)
         //{
-           
+
         //}
-        
+
 
         private void button1_Click_1(object sender, EventArgs e)
         {
@@ -70,7 +76,7 @@ namespace Movie
 
 
         }
-        private void JsonParser(String json)
+        public void JsonParser(String json)
         {
             JArray array = JArray.Parse(json.ToString());
             int y = 10;
@@ -106,7 +112,7 @@ namespace Movie
             }
         }
 
-        private void button_Click(object sender, EventArgs e)
+        public void button_Click(object sender, EventArgs e)
         {
             
             this.Hide();
@@ -123,7 +129,15 @@ namespace Movie
                 {
                     if (Object["movie_name"].ToString() == thisbtn.Text)
                     {
-                        System.Diagnostics.Process.Start(Object["ticket_link"].ToString());
+                        Ticket_url = Object["ticket_link"].ToString();
+                        //System.Diagnostics.Process.Start(Object["ticket_link"].ToString());
+                        //this.Hide();
+                        //Form4 Movefomr4 = new Form4();
+                        //Movefomr4.Show();
+                        //Program.ac.MainForm = newForm;
+                        //this.Close();
+
+                        
                     }
 
                 }
@@ -135,6 +149,10 @@ namespace Movie
     
         }
 
+        public String GetTicketUrl()
+        {
+            return Ticket_url;
+        }
 
 
 
