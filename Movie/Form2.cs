@@ -19,7 +19,8 @@ namespace Movie
         public List<String> ticket_url = new List<String>();
         public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
-        
+        static String Ticket_url = "";
+
 
         String retString;
         Form4 frm4;
@@ -114,16 +115,12 @@ namespace Movie
             }
         }
 
-        static String Ticket_url = "";
-        public String GetTicketUrl()
+        public String GetTicketUrl()    //form4로 전환할 때 ticket_url을 가지고 가는 get메소드
         {
             return Ticket_url;
         }
         public void button_Click(object sender, EventArgs e)
         {
-            
-           
-
             Button thisbtn = sender as Button;
             JArray array = JArray.Parse(retString.ToString());
             try
@@ -139,14 +136,6 @@ namespace Movie
                         newForm.Show();
                         Program.ac.MainForm = newForm;
                         this.Close();
-                        //System.Diagnostics.Process.Start(Object["ticket_link"].ToString());
-                        //this.Hide();
-                        //Form4 Movefomr4 = new Form4();
-                        //Movefomr4.Show();
-                        //Program.ac.MainForm = newForm;
-                        //this.Close();
-
-
                     }
 
                 }
@@ -157,11 +146,6 @@ namespace Movie
             }
     
         }
-
-      
-
-
-
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
