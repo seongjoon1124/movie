@@ -19,6 +19,7 @@ namespace Movie
         {
             InitializeComponent();
             GetMoiveRank();
+            this.textBox1.ScrollBars = ScrollBars.Both;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -58,19 +59,22 @@ namespace Movie
         private void JsonParser(String json)
         {
             JArray array = JArray.Parse(json.ToString());
-
+         
             foreach (JObject itemObj in array)
             {
-                textBox1.Text += "순위 이미지 : " + itemObj["count_img"].ToString();
-                textBox1.Text += "영화 제목 : " + itemObj["movie_name"].ToString();
-                textBox1.Text += "순위 : " + itemObj["rank"].ToString();
-                textBox1.Text += "변동률" + itemObj["variable"].ToString();
-                textBox1.Text += "변동 이미지 : " + itemObj["variable_img"].ToString();
+
+                textBox1.Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
+                textBox1.Text += "순위 : " + itemObj["rank"].ToString() + "\r\n";
+                textBox1.Text += "변동률 : " + itemObj["variable"].ToString() + "\r\n\r\n";
+             
 
 
             }
         }
 
+   
+       
+        
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 

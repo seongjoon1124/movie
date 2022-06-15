@@ -19,6 +19,10 @@ namespace Movie
         public List<String> ticket_url = new List<String>();
         public List<Button> btn = new List<Button>();    
         public int btn_count = 0;
+        public List<PictureBox> pictureBoxes = new List<PictureBox>();
+        public int pic_count = 0;
+        public List<TextBox> textBoxes = new List<TextBox>();
+        public int text_count = 0;
         static String Ticket_url = "";
 
 
@@ -83,30 +87,53 @@ namespace Movie
         {
             JArray array = JArray.Parse(json.ToString());
             int y = 10;
+            int p_y = 10;
+            int t_y = 10;
             
 
             foreach (JObject itemObj in array)
             {
-                textBox1.Text += "평점 : " + itemObj["grade"].ToString();
-                textBox1.Text += "이미지 주소 : " + itemObj["img_url"].ToString();
-                textBox1.Text += "영화 제목 : " + itemObj["movie_name"].ToString();
-                textBox1.Text += "상영 시간" + itemObj["movie_time"].ToString();
-                textBox1.Text += "예매하기 : " + itemObj["ticket_link"].ToString(); //button으로 전환 후 클릭 시 영화관, 지역, 시간 form으로 넘어가게
                 btn.Add(new Button());
                 btn[btn_count] = new Button();
                 this.Controls.Add(btn[btn_count]);
                 btn[btn_count].Text = (itemObj["movie_name"].ToString());
                 btn[btn_count].Location = new Point(565, y);
                 btn[btn_count].Size = new Size(95, 24);
-               
-                y += 60;
-                
-                ticket_url.Add(itemObj["ticket_link"].ToString());
 
+                pictureBoxes.Add(new PictureBox());
+                pictureBoxes[pic_count] = new PictureBox();
+                this.Controls.Add(pictureBoxes[pic_count]);
+                pictureBoxes[pic_count].Location = new Point(25, y);
+                pictureBoxes[pic_count].Size = new Size(94, 114);
+                pictureBoxes[pic_count].ImageLocation = itemObj["img_url"].ToString();
+                pictureBoxes[pic_count].Load(itemObj["img_url"].ToString());
+
+                textBoxes.Add(new TextBox());
+                textBoxes[text_count] = new TextBox();
+                this.Controls.Add(textBoxes[pic_count]);
+                textBoxes[text_count].Location = new Point(150, y);
+                textBoxes[text_count].Size = new Size(371, 108);
+                textBoxes[text_count].Multiline = true;
+                textBoxes[text_count].Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
+                textBoxes[text_count].Text += "\r\n평점 : " + itemObj["grade"].ToString() + "\r\n";
+                textBoxes[text_count].Text += "시간 : " + itemObj["movie_time"].ToString() + "\r\n";
+
+
+
+                y += 150;
+                p_y += 150;
+
+                
+                
+
+
+
+                ticket_url.Add(itemObj["ticket_link"].ToString());
                 btn[btn_count].Click += button_Click;
                 
-                
+                text_count++;
                 btn_count++;
+                pic_count++;
 
 
 
