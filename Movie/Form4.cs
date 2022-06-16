@@ -271,8 +271,10 @@ namespace Movie
             Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
 
             var chromeOptions = new ChromeOptions();
+            ChromeDriverService chromeservice = ChromeDriverService.CreateDefaultService("크롬드라이브 경로");
+            chromeservice.HideCommandPromptWindow = true;
             chromeOptions.AddArgument("headless");
-            IWebDriver Driver = new ChromeDriver("C:/Users/Gihwan/Documents/GitHub/movie", chromeOptions);
+            IWebDriver Driver = new ChromeDriver(chromeservice, chromeOptions);
 
             Driver.Url = url;
 

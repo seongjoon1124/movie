@@ -59,11 +59,19 @@ namespace Movie
 
                 Label labels = new Label();
                 this.Controls.Add(labels);
-                labels.Location = new Point(150, y);
-                labels.Size = new Size(371, 108);
+                labels.Location = new Point(150, y + 35);
+                labels.Size = new Size(371, 54);
                 labels.Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
                 labels.Text += "상영예정일 : " + itemObj["open_date"].ToString() + "\r\n";
                 labels.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+
+                Label line = new Label();
+                this.Controls.Add(line);
+                line.Location = new Point(0, pictureBoxes.Height + pictureBoxes.Location.Y + 20);
+                line.AutoSize = false;
+                line.BorderStyle = BorderStyle.Fixed3D;
+                line.Width = 816;
+                line.Height = 2;
 
                 y += 150;
     

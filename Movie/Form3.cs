@@ -69,36 +69,34 @@ namespace Movie
         private void JsonParser(String json)
         {
             JArray array = JArray.Parse(json.ToString());
-            int y = 10;
-            int p_y = 10;
-            int t_y = 10;
+            int y = 0;
 
             foreach (JObject itemObj in array)
             {
 
                 PictureBox pictureBoxes = new PictureBox();
                 this.Controls.Add(pictureBoxes);
-                pictureBoxes.Location = new Point(25, y);
-                pictureBoxes.Size = new Size(94, 114);
+                pictureBoxes.Location = new Point(75, y + 34);
+                pictureBoxes.Size = new Size(47, 32);
                 pictureBoxes.ImageLocation = itemObj["count_img"].ToString();
                 pictureBoxes.Load(itemObj["count_img"].ToString());
 
                 Label labels = new Label();
                 this.Controls.Add(labels);
-                labels.Location = new Point(150, y);
-                labels.Size = new Size(300, 100);
+                labels.Location = new Point(150, y + 32);
+                labels.Size = new Size(300, 32);
                 labels.Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
-                labels.Text += "\r\n순위 : " + itemObj["rank"].ToString() + "\r\n";
-                labels.Text += "변동률 : " + itemObj["variable"].ToString() + "\r\n";
                 labels.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 
-                y += 150;
-                p_y += 150;
+                Label line = new Label();
+                this.Controls.Add(line);
+                line.Location = new Point(0, labels.Location.Y + 50);
+                line.AutoSize = false;
+                line.BorderStyle = BorderStyle.Fixed3D;
+                line.Width = 816;
+                line.Height = 2;
 
-                //textBox1.Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
-                //textBox1.Text += "순위 : " + itemObj["rank"].ToString() + "\r\n";
-                //textBox1.Text += "변동률 : " + itemObj["variable"].ToString() + "\r\n\r\n";
-
+                y = line.Location.Y;
             }
         }
 

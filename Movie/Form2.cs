@@ -112,13 +112,20 @@ namespace Movie
                 Label labels = new Label();
                 labels = new Label();
                 this.Controls.Add(labels);
-                labels.Location = new Point(150, y);
+                labels.Location = new Point(150, y + 20);
                 labels.Size = new Size(371, 108);
                 labels.Text += "제목 : " + itemObj["movie_name"].ToString() + "\r\n";
                 labels.Text += "\r\n평점 : " + itemObj["grade"].ToString() + "\r\n";
                 labels.Text += "시간 : " + itemObj["movie_time"].ToString() + "\r\n";
                 labels.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-                
+
+                Label line = new Label();
+                this.Controls.Add(line);
+                line.Location = new Point(0, pictureBoxes.Location.Y + pictureBoxes.Height + 20);
+                line.AutoSize = false;
+                line.BorderStyle = BorderStyle.Fixed3D;
+                line.Width = 816;
+                line.Height = 2;
 
                 y += 150;
 

@@ -21,6 +21,14 @@ namespace Movie
         private int tempIndex;
         private Form activeForm;
 
+        public int getWidth
+        {
+            get
+            {
+                return this.panelsidetitle.Size.Width;
+            }
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -53,7 +61,6 @@ namespace Movie
                     currentButton.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
                     panelsidetitle.BackColor = color;
                     paneltitlebar.BackColor = ThemeColor.ChangeColorBrighness(color, -0.3);
-
                 }
             }
         }
