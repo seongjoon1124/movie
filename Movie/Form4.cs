@@ -20,6 +20,7 @@ namespace Movie
     public partial class Form4 : Form
     {
         List<string> ticketlink = new List<string>();      // <! 영화관
+        private Form activeForm;
 
         public Form4()
         {
@@ -35,8 +36,25 @@ namespace Movie
             Form2 _form = new Form2();
 
             url = _form.GetTicketUrl();
-            textBox1.Text += "주소 : " + url;
         }
+
+        private void OpenChildForm(Form childForm, Object btnSender)
+        {
+            if (activeForm != null)
+            {
+                activeForm.Close();
+            }
+            activeForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.Controls.Add(childForm);
+            this.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+
+        }
+
 
         public void initRoot()
         {
@@ -244,14 +262,6 @@ namespace Movie
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form2 newForm = new Form2();
-            newForm.Show();
-            Program.ac.MainForm = newForm;
-            this.Close();
-        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -262,7 +272,7 @@ namespace Movie
 
             var chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("headless");
-            IWebDriver Driver = new ChromeDriver("경로", chromeOptions);
+            IWebDriver Driver = new ChromeDriver("C:/Users/Gihwan/Documents/GitHub/movie", chromeOptions);
 
             Driver.Url = url;
 
@@ -288,6 +298,7 @@ namespace Movie
                 title_text.Location = new Point(50, y);
                 title_text.Size = new Size(130, 10);
                 title_text.Text = title_name;
+                title_text.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 
                 IList<IWebElement> rsv_time = li.FindElements(By.ClassName("rsv_time"));
 
@@ -303,6 +314,7 @@ namespace Movie
                     mv_time.Location = new Point(title_text.Location.X + 160, y2);
                     mv_time.Size = new Size(130, 10);
                     mv_time.Text = cine_info;
+                    mv_time.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
                     Console.WriteLine(cine_info);
 
                     IList<IWebElement> mv_box = time.FindElements(By.ClassName("enabled"));
