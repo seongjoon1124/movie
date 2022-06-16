@@ -19,9 +19,7 @@ namespace Movie
 {
     public partial class Form4 : Form
     {
-        List<TextBox> textBoxes = new List<TextBox>();
-        List<TextBox> textBoxes2 = new List<TextBox>();
-        List<Button> buttonBoxes = new List<Button>();
+        List<string> ticketlink = new List<string>();      // <! 영화관
 
         public Form4()
         {
@@ -30,7 +28,7 @@ namespace Movie
             initRoot();
 
         }
-        IWebDriver Driver = new ChromeDriver("C:/Users/Sungjun/AndroidStudioProjects/movie/app");
+
         String url;
         public void GetMovie_Area_time()
         {
@@ -262,6 +260,10 @@ namespace Movie
             Console.WriteLine("Sub_Value : " + comboBox1.SelectedValue.ToString());
             Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
 
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("headless");
+            IWebDriver Driver = new ChromeDriver("경로", chromeOptions);
+
             Driver.Url = url;
 
             IJavaScriptExecutor ex = (IJavaScriptExecutor)Driver;
@@ -270,62 +272,72 @@ namespace Movie
 
             ex.ExecuteScript("changeMenu.change('root', '" + comboBox1.SelectedValue.ToString() + "');");
             ex.ExecuteScript("changeMenu.change('sub', '" + comboBox2.SelectedValue.ToString() + "');");
-            ex.ExecuteScript("changeMenu.change('date', '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "');");
-
+            ex.ExecuteScript("changeMenu.change('date', '" + date + "');");
 
             IWebElement title = Driver.FindElement(By.ClassName("cinehouse"));
-            IList<IWebElement> title_list = title.FindElements(By.ClassName("cine_title"));
+            IList<IWebElement> tag_name = title.FindElements(By.TagName("li"));
 
-            int text_count = 0;
             int y = 100;
-            foreach (IWebElement title_element in title_list)
+
+            foreach (var li in tag_name)
             {
-                textBoxes.Add(new TextBox());
-                textBoxes[text_count] = new TextBox();
-                this.Controls.Add(textBoxes[text_count]);
-                textBoxes[text_count].Location = new Point(50, y);
-                textBoxes[text_count].Size = new Size(130, 10);
-                textBoxes[text_count].Text += title_element.Text;
-                y += 250;
-          
-            }
+                string title_name = li.FindElement(By.ClassName("cine_title")).Text;
 
-            int text_count2 = 0;
-            int y2 = 100;
-            IWebElement cine_info = Driver.FindElement(By.ClassName("cinehouse"));
-            IList<IWebElement> cine_list = cine_info.FindElements(By.ClassName("no_cine_info"));
-            foreach (IWebElement cine_element in cine_list)
+                TextBox title_text = new TextBox();
+                this.Controls.Add(title_text);
+                title_text.Location = new Point(50, y);
+                title_text.Size = new Size(130, 10);
+                title_text.Text = title_name;
+
+                IList<IWebElement> rsv_time = li.FindElements(By.ClassName("rsv_time"));
+
+                Console.WriteLine(title_name);
+
+                int y2 = title_text.Location.Y;
+
+                foreach (var time in rsv_time)
+                {
+                    string cine_info = time.FindElement(By.ClassName("no_cine_info")).Text;
+                    TextBox mv_time = new TextBox();
+                    this.Controls.Add(mv_time);
+                    mv_time.Location = new Point(title_text.Location.X + 160, y2);
+                    mv_time.Size = new Size(130, 10);
+                    mv_time.Text = cine_info;
+                    Console.WriteLine(cine_info);
+
+                    IList<IWebElement> mv_box = time.FindElements(By.ClassName("enabled"));
+
+                    int X = mv_time.Location.X + 150;
+
+                    foreach (var box in mv_box)
+                    {
+                        Button b = new Button();
+                        this.Controls.Add(b);
+                        b.Location = new Point(X , y2);
+                        b.Name = box.GetAttribute("href");
+                        ticketlink.Add(b.Name);
+                        b.Text = box.Text;
+                        b.Click += Time_btn;
+                        X += 80;
+                    }
+                    y2 += 40;
+                    Console.WriteLine();
+                }
+                y = y2 + 50;
+
+                Console.WriteLine("-------------------------------------------------------");
+            }
+        }
+
+        public void Time_btn(object sender, EventArgs e)
+        {
+            Button thisbtn = sender as Button;
+
+
+            if (thisbtn.Name == ticketlink.Find(a => a.Contains(thisbtn.Name)))
             {
-                textBoxes2.Add(new TextBox());
-                textBoxes2[text_count2] = new TextBox();
-                this.Controls.Add(textBoxes2[text_count2]);
-                textBoxes2[text_count2].Location = new Point(200, y2);
-                textBoxes2[text_count2].Size = new Size(130, 10);
-                textBoxes2[text_count2].Text += cine_element.Text;
-                y2 += 40;
+                System.Diagnostics.Process.Start(ticketlink[ticketlink.FindIndex(a => a.Contains(thisbtn.Name))]);
             }
-
-            int btn_count = 0;
-            int y3 = 100;
-            int x = 400;
-            
-            IWebElement time = Driver.FindElement(By.ClassName("cinehouse"));
-            IList<IWebElement> time_list = time.FindElements(By.ClassName("enabled"));
-            foreach(IWebElement time_element in time_list)
-            {
-                buttonBoxes.Add(new Button());
-                buttonBoxes[btn_count] = new Button();
-                this.Controls.Add(buttonBoxes[btn_count]);
-                buttonBoxes[btn_count].Location = new Point(x, y3);
-                buttonBoxes[btn_count].Text += time_element.Text;
-                x += 50;
-            }
-
-
-
-
-
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -345,24 +357,6 @@ namespace Movie
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Sub_Value : " + comboBox1.SelectedValue.ToString());
-
-            Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
-
-            Driver.Url = url;
-
-            IJavaScriptExecutor ex = (IJavaScriptExecutor)Driver;
-
-            Console.WriteLine("changeMenu.change('date', '" + dateTimePicker1.Value.ToString() + "');");
-
-            ex.ExecuteScript("changeMenu.change('root', '" + comboBox1.SelectedValue.ToString() + "');");
-            ex.ExecuteScript("changeMenu.change('sub', '" + comboBox2.SelectedValue.ToString() + "');");
-            ex.ExecuteScript("changeMenu.change('date', '"+ dateTimePicker1.Value.ToString("yyyy-MM-dd") + "');");
 
         }
     }

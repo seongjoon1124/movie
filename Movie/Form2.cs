@@ -117,15 +117,7 @@ namespace Movie
                 textBoxes[text_count].Text += "\r\n평점 : " + itemObj["grade"].ToString() + "\r\n";
                 textBoxes[text_count].Text += "시간 : " + itemObj["movie_time"].ToString() + "\r\n";
 
-
-
                 y += 150;
-
-
-                
-                
-
-
 
                 ticket_url.Add(itemObj["ticket_link"].ToString());
                 btn[btn_count].Click += button_Click;
