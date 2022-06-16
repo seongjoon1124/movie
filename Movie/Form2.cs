@@ -157,7 +157,6 @@ namespace Movie
                     if (Object["movie_name"].ToString() == thisbtn.Text)
                     {
                         Ticket_url = Object["ticket_link"].ToString();
-
                         this.Hide();
                         Form4 newForm = new Form4();
                         newForm.Show();
@@ -170,6 +169,7 @@ namespace Movie
             catch (Exception ex)
             {
                 //
+                Console.WriteLine("ERROR : " + ex);
             }
     
         }
