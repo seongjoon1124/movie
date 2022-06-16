@@ -28,7 +28,7 @@ namespace Movie
             InitializeComponent();
             GetMovie_Area_time();
             initRoot();
-          
+
         }
         IWebDriver Driver = new ChromeDriver("C:/Users/Sungjun/AndroidStudioProjects/movie/app");
         String url;
@@ -38,7 +38,6 @@ namespace Movie
 
             url = _form.GetTicketUrl();
             textBox1.Text += "주소 : " + url;
-
         }
 
         public void initRoot()
@@ -59,7 +58,7 @@ namespace Movie
             rootArea.Add("11", "경상");
             rootArea.Add("12", "제주");
 
-            comboBox1.DataSource = new BindingSource(rootArea, null);   
+            comboBox1.DataSource = new BindingSource(rootArea, null);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -67,10 +66,11 @@ namespace Movie
             initSub();
 
         }
+
         public void initSub()
         {
-            string sub_value = comboBox1.SelectedValue.ToString(); 
-            if(sub_value == "1")
+            string sub_value = comboBox1.SelectedValue.ToString();
+            if (sub_value == "1")
             {
                 comboBox2.DisplayMember = "value";
                 comboBox2.ValueMember = "key";
@@ -92,14 +92,14 @@ namespace Movie
                 comboBox2.DataSource = new BindingSource(subArea, null);
             }
 
-            
+
             if (sub_value == "2")
             {
                 comboBox2.DisplayMember = "value";
                 comboBox2.ValueMember = "key";
                 Dictionary<string, string> subArea = new Dictionary<string, string>();
                 subArea.Add("46", "인천");
-            
+
 
                 comboBox2.DataSource = new BindingSource(subArea, null);
             }
@@ -240,8 +240,6 @@ namespace Movie
 
                 comboBox2.DataSource = new BindingSource(subArea, null);
             }
-
-
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -330,12 +328,6 @@ namespace Movie
 
         }
 
-
-
-
-
-
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -356,6 +348,22 @@ namespace Movie
 
         }
 
-      
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Sub_Value : " + comboBox1.SelectedValue.ToString());
+
+            Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
+
+            Driver.Url = url;
+
+            IJavaScriptExecutor ex = (IJavaScriptExecutor)Driver;
+
+            Console.WriteLine("changeMenu.change('date', '" + dateTimePicker1.Value.ToString() + "');");
+
+            ex.ExecuteScript("changeMenu.change('root', '" + comboBox1.SelectedValue.ToString() + "');");
+            ex.ExecuteScript("changeMenu.change('sub', '" + comboBox2.SelectedValue.ToString() + "');");
+            ex.ExecuteScript("changeMenu.change('date', '"+ dateTimePicker1.Value.ToString("yyyy-MM-dd") + "');");
+
+        }
     }
 }
