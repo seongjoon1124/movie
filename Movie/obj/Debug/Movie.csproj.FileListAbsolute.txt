@@ -36,3 +36,4 @@ C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form3.resources
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\SeleniumExtras.WaitHelpers.dll
 C:\Users\Sungjun\source\repos\Movie\Movie\bin\Debug\WebDriver.Support.dll
 C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form4.resources
+C:\Users\Sungjun\source\repos\Movie\Movie\obj\Debug\Movie.Form5.resources

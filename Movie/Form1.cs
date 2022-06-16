@@ -50,5 +50,14 @@ namespace Movie
             Program.ac.MainForm = newForm;
             this.Close();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form5 newForm = new Form5();
+            newForm.Show();
+            Program.ac.MainForm = newForm;
+            this.Close();
+        }
     }
 }

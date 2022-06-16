@@ -87,8 +87,7 @@ namespace Movie
         {
             JArray array = JArray.Parse(json.ToString());
             int y = 10;
-            int p_y = 10;
-            int t_y = 10;
+ 
             
 
             foreach (JObject itemObj in array)
@@ -121,7 +120,7 @@ namespace Movie
 
 
                 y += 150;
-                p_y += 150;
+
 
                 
                 

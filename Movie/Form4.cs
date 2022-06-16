@@ -19,8 +19,10 @@ namespace Movie
 {
     public partial class Form4 : Form
     {
-        
-        
+        List<TextBox> textBoxes = new List<TextBox>();
+        List<TextBox> textBoxes2 = new List<TextBox>();
+        List<Button> buttonBoxes = new List<Button>();
+
         public Form4()
         {
             InitializeComponent();
@@ -28,56 +30,14 @@ namespace Movie
             initRoot();
           
         }
-
-
+        IWebDriver Driver = new ChromeDriver("C:/Users/Sungjun/AndroidStudioProjects/movie/app");
+        String url;
         public void GetMovie_Area_time()
         {
             Form2 _form = new Form2();
-            String url = _form.GetTicketUrl();
-        
+
+            url = _form.GetTicketUrl();
             textBox1.Text += "주소 : " + url;
-            //String test = "https://www.naver.com";
-
-           
-            
-
-
-            using (IWebDriver Driver = new ChromeDriver("C:/Users/Sungjun/AndroidStudioProjects/movie/app")) //크롬 드라이버 안맞아서 경로 지정
-            {
-
-                System.Diagnostics.Process.Start(url);
-                Driver.Url = url;
-
-                //StringBuilder postParams = new StringBuilder();
-
-
-                //try
-                //{
-                //    HttpWebRequest wReqFirst = (HttpWebRequest)WebRequest.Create(url);
-                //    wReqFirst.Method = "POST";
-                //}
-
-                //catch (Exception ex)
-                //{
-                //    //
-                //}
-                //var element = Driver.FindElement(By.Id("rootDropBox"));
-                //comboBox1.Items.Add(element.Text);
-
-                //IList<IWebElement> elements;
-
-                //foreach (var item in elements)
-                //{
-                //    comboBox1.Items.Add((item).Text);
-                //}
-
-
-
-
-                //comboBox1.Items.Add(element.Text);
-
-
-            }
 
         }
 
@@ -105,6 +65,7 @@ namespace Movie
         private void button2_Click(object sender, EventArgs e)
         {
             initSub();
+
         }
         public void initSub()
         {
@@ -282,12 +243,6 @@ namespace Movie
 
 
         }
-
-
-
-
-
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -301,10 +256,77 @@ namespace Movie
             Program.ac.MainForm = newForm;
             this.Close();
         }
+
         private void button3_Click(object sender, EventArgs e)
         {
             string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
-            MessageBox.Show(date);
+
+            Console.WriteLine("Sub_Value : " + comboBox1.SelectedValue.ToString());
+            Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
+
+            Driver.Url = url;
+
+            IJavaScriptExecutor ex = (IJavaScriptExecutor)Driver;
+
+            Console.WriteLine("changeMenu.change('date', '" + dateTimePicker1.Value.ToString() + "');");
+
+            ex.ExecuteScript("changeMenu.change('root', '" + comboBox1.SelectedValue.ToString() + "');");
+            ex.ExecuteScript("changeMenu.change('sub', '" + comboBox2.SelectedValue.ToString() + "');");
+            ex.ExecuteScript("changeMenu.change('date', '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "');");
+
+
+            IWebElement title = Driver.FindElement(By.ClassName("cinehouse"));
+            IList<IWebElement> title_list = title.FindElements(By.ClassName("cine_title"));
+
+            int text_count = 0;
+            int y = 100;
+            foreach (IWebElement title_element in title_list)
+            {
+                textBoxes.Add(new TextBox());
+                textBoxes[text_count] = new TextBox();
+                this.Controls.Add(textBoxes[text_count]);
+                textBoxes[text_count].Location = new Point(50, y);
+                textBoxes[text_count].Size = new Size(130, 10);
+                textBoxes[text_count].Text += title_element.Text;
+                y += 250;
+          
+            }
+
+            int text_count2 = 0;
+            int y2 = 100;
+            IWebElement cine_info = Driver.FindElement(By.ClassName("cinehouse"));
+            IList<IWebElement> cine_list = cine_info.FindElements(By.ClassName("no_cine_info"));
+            foreach (IWebElement cine_element in cine_list)
+            {
+                textBoxes2.Add(new TextBox());
+                textBoxes2[text_count2] = new TextBox();
+                this.Controls.Add(textBoxes2[text_count2]);
+                textBoxes2[text_count2].Location = new Point(200, y2);
+                textBoxes2[text_count2].Size = new Size(130, 10);
+                textBoxes2[text_count2].Text += cine_element.Text;
+                y2 += 40;
+            }
+
+            int btn_count = 0;
+            int y3 = 100;
+            int x = 400;
+            
+            IWebElement time = Driver.FindElement(By.ClassName("cinehouse"));
+            IList<IWebElement> time_list = time.FindElements(By.ClassName("enabled"));
+            foreach(IWebElement time_element in time_list)
+            {
+                buttonBoxes.Add(new Button());
+                buttonBoxes[btn_count] = new Button();
+                this.Controls.Add(buttonBoxes[btn_count]);
+                buttonBoxes[btn_count].Location = new Point(x, y3);
+                buttonBoxes[btn_count].Text += time_element.Text;
+                x += 50;
+            }
+
+
+
+
+
 
         }
 
