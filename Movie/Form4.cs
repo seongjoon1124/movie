@@ -38,8 +38,7 @@ namespace Movie
             textBox1.Text += "주소 : " + url;
             //String test = "https://www.naver.com";
 
-            //IWebDriver driver = new ChromeDriver("C:/Users/Sungjun/Desktop/ExamSelenium/packages/Selenium.WebDriver.ChromeDriver.102.0.5005.6102/driver/win32");
-            //IWebDriver a = new ChromeDriver();
+           
             
 
 
@@ -48,21 +47,35 @@ namespace Movie
 
                 System.Diagnostics.Process.Start(url);
                 Driver.Url = url;
+
+                //StringBuilder postParams = new StringBuilder();
+
+
+                //try
+                //{
+                //    HttpWebRequest wReqFirst = (HttpWebRequest)WebRequest.Create(url);
+                //    wReqFirst.Method = "POST";
+                //}
+
+                //catch (Exception ex)
+                //{
+                //    //
+                //}
                 //var element = Driver.FindElement(By.Id("rootDropBox"));
                 //comboBox1.Items.Add(element.Text);
 
                 //IList<IWebElement> elements;
-                
+
                 //foreach (var item in elements)
                 //{
                 //    comboBox1.Items.Add((item).Text);
                 //}
 
-               
-               
+
+
 
                 //comboBox1.Items.Add(element.Text);
-                
+
 
             }
 
