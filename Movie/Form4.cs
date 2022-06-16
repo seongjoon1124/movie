@@ -271,7 +271,7 @@ namespace Movie
             Console.WriteLine("Sub_Area : " + comboBox2.SelectedValue.ToString());
 
             var chromeOptions = new ChromeOptions();
-            ChromeDriverService chromeservice = ChromeDriverService.CreateDefaultService("크롬드라이브 경로");
+            ChromeDriverService chromeservice = ChromeDriverService.CreateDefaultService("C:/Users/Gihwan/Documents/GitHub/movie");
             chromeservice.HideCommandPromptWindow = true;
             chromeOptions.AddArgument("headless");
             IWebDriver Driver = new ChromeDriver(chromeservice, chromeOptions);
@@ -290,15 +290,16 @@ namespace Movie
             IList<IWebElement> tag_name = title.FindElements(By.TagName("li"));
 
             int y = 100;
+            int startBtn_X = 0;
 
             foreach (var li in tag_name)
             {
                 string title_name = li.FindElement(By.ClassName("cine_title")).Text;
 
-                TextBox title_text = new TextBox();
+                Label title_text = new Label();
                 this.Controls.Add(title_text);
                 title_text.Location = new Point(50, y);
-                title_text.Size = new Size(130, 10);
+                title_text.Size = new Size(130, 50);
                 title_text.Text = title_name;
                 title_text.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 
@@ -311,10 +312,10 @@ namespace Movie
                 foreach (var time in rsv_time)
                 {
                     string cine_info = time.FindElement(By.ClassName("no_cine_info")).Text;
-                    TextBox mv_time = new TextBox();
+                    Label mv_time = new Label();
                     this.Controls.Add(mv_time);
                     mv_time.Location = new Point(title_text.Location.X + 160, y2);
-                    mv_time.Size = new Size(130, 10);
+                    mv_time.Size = new Size(130, 20);
                     mv_time.Text = cine_info;
                     mv_time.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
                     Console.WriteLine(cine_info);
@@ -323,8 +324,15 @@ namespace Movie
 
                     int X = mv_time.Location.X + 150;
 
+                    startBtn_X = X;
+
                     foreach (var box in mv_box)
                     {
+                        if (X > 789)
+                        {
+                            X = startBtn_X;
+                            y2 += 40;
+                        }
                         Button b = new Button();
                         this.Controls.Add(b);
                         b.Location = new Point(X , y2);
@@ -337,6 +345,13 @@ namespace Movie
                     y2 += 40;
                     Console.WriteLine();
                 }
+                Label line = new Label();
+                this.Controls.Add(line);
+                line.Location = new Point(0, y2 + 25);
+                line.AutoSize = false;
+                line.BorderStyle = BorderStyle.Fixed3D;
+                line.Width = 816;
+                line.Height = 2;
                 y = y2 + 50;
 
                 Console.WriteLine("-------------------------------------------------------");
@@ -373,5 +388,6 @@ namespace Movie
         {
 
         }
+
     }
 }

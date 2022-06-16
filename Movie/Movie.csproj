@@ -148,6 +148,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -159,9 +160,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\NanumBarunGothic-YetHangul.ttf" />
+    <None Include="Resources\NanumBarunGothicOTF-YetHangul.otf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\watching-a-movie %281%29_negative.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\3d-glasses_negative.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NanumBarunGothicOTF-YetHangul.otf.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\popcorn %281%29_negative.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.102.0.5005.6102\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.102.0.5005.6102\build\Selenium.WebDriver.ChromeDriver.targets')" />

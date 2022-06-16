@@ -26,6 +26,7 @@ namespace Movie
 
         public Form2()
         {
+            this.AutoScroll = true;
             InitializeComponent();
             GetMoiveList();
         }
@@ -91,18 +92,16 @@ namespace Movie
             foreach (JObject itemObj in array)
             {
                 Button btn = new Button();
-                btn = new Button();
                 this.Controls.Add(btn);
                 btn.Name = (itemObj["movie_name"].ToString());
                 btn.Text = "예매하기";
                 btn.Location = new Point(565, y);
                 btn.Size = new Size(95, 114);
                 btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
+                btn.FlatAppearance.BorderSize = 1;
                 btn.Font = new Font("NanumBarunGothicOTF YetHangul", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 
                 PictureBox pictureBoxes = new PictureBox();
-                pictureBoxes = new PictureBox();
                 this.Controls.Add(pictureBoxes);
                 pictureBoxes.Location = new Point(25, y);
                 pictureBoxes.Size = new Size(94, 114);
@@ -110,7 +109,6 @@ namespace Movie
                 pictureBoxes.Load(itemObj["img_url"].ToString());
 
                 Label labels = new Label();
-                labels = new Label();
                 this.Controls.Add(labels);
                 labels.Location = new Point(150, y + 20);
                 labels.Size = new Size(371, 108);
@@ -151,6 +149,7 @@ namespace Movie
                     {
                         Ticket_url = Object["ticket_link"].ToString();
 
+                        this.AutoScroll = false;
                         OpenChildForm(new Form4(), sender);
                         //this.Hide();
                         //Form4 newForm = new Form4();
@@ -158,7 +157,6 @@ namespace Movie
                         //Program.ac.MainForm = newForm;
                         //this.Close();
                     }
-
                 }
             }
             catch (Exception ex)
@@ -166,7 +164,7 @@ namespace Movie
                 //
                 Console.WriteLine("ERROR : " + ex);
             }
-    
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)

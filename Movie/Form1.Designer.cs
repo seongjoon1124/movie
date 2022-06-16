@@ -30,62 +30,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.panelmenu = new System.Windows.Forms.Panel();
             this.panelsidetitle = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.paneltitlebar = new System.Windows.Forms.Panel();
+            this.homelabel = new System.Windows.Forms.Label();
             this.titlebarlabel = new System.Windows.Forms.Label();
             this.panelDesktop = new System.Windows.Forms.Panel();
-            this.homelabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelmenu.SuspendLayout();
             this.panelsidetitle.SuspendLayout();
             this.paneltitlebar.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(0, 100);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 50);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "현재 상영영화";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(0, 149);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(200, 50);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "영화 순위";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(0, 197);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(200, 50);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "상영 예정작";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // panelmenu
             // 
@@ -132,6 +90,17 @@
             this.paneltitlebar.Size = new System.Drawing.Size(864, 100);
             this.paneltitlebar.TabIndex = 4;
             // 
+            // homelabel
+            // 
+            this.homelabel.AutoSize = true;
+            this.homelabel.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.homelabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.homelabel.Location = new System.Drawing.Point(357, 35);
+            this.homelabel.Name = "homelabel";
+            this.homelabel.Size = new System.Drawing.Size(74, 31);
+            this.homelabel.TabIndex = 1;
+            this.homelabel.Text = "영  끌";
+            // 
             // titlebarlabel
             // 
             this.titlebarlabel.Location = new System.Drawing.Point(0, 0);
@@ -147,16 +116,56 @@
             this.panelDesktop.Size = new System.Drawing.Size(864, 461);
             this.panelDesktop.TabIndex = 5;
             // 
-            // homelabel
+            // button1
             // 
-            this.homelabel.AutoSize = true;
-            this.homelabel.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.homelabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.homelabel.Location = new System.Drawing.Point(357, 35);
-            this.homelabel.Name = "homelabel";
-            this.homelabel.Size = new System.Drawing.Size(74, 31);
-            this.homelabel.TabIndex = 1;
-            this.homelabel.Text = "영  끌";
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Image = global::Movie.Properties.Resources.watching_a_movie__1__negative;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(0, 100);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(200, 50);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "현재 상영영화";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button3.Image = global::Movie.Properties.Resources.popcorn__1__negative;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(0, 197);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(200, 50);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "상영 예정작";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("NanumBarunGothicOTF YetHangul", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Image = global::Movie.Properties.Resources._3d_glasses_negative;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(0, 149);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(200, 50);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "영화 순위";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Form1
             // 
@@ -166,6 +175,8 @@
             this.Controls.Add(this.panelDesktop);
             this.Controls.Add(this.paneltitlebar);
             this.Controls.Add(this.panelmenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "영끌";
             this.panelmenu.ResumeLayout(false);
